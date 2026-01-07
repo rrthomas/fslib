@@ -110,9 +110,9 @@ a simple, unified structure to the program.
 
     >>> import fslib, fslib.stacking
     >>> mnt = fslib.MountFS()
-    >>> mnt.mount_fs('/', fslib.stacking.ReadOnlyFS(fslib.OSFS('/')))
-    >>> mnt.mount_fs('/home/xelnor/.myapp', fslib.stacking.MemoryFS())
-    >>> mnt.mount_fs('/home/xelnor/.myapp/cache', fslib.OSFS('/tmp/myapp/shared_cache'))
+    >>> mnt.mount_fs(fslib.stacking.ReadOnlyFS(fslib.OSFS('/')), '/')
+    >>> mnt.mount_fs(fslib.stacking.MemoryFS(), '/home/xelnor/.myapp')
+    >>> mnt.mount_fs(fslib.OSFS('/tmp/myapp/shared_cache'), '/home/xelnor/.myapp/cache')
 
 With this setup:
 
