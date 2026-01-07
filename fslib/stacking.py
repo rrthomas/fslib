@@ -592,14 +592,14 @@ class UnionFS(base.BaseFS):
                 valid = True
                 member_path = os.path.join(path, member)
                 for higher_branch in branches[:rank]:
-                    status = self._get_branch_pstat(higher_branch, member_path)
-                    if status == _STATUS_DELETED:
+                    pstat = self._get_branch_pstat(higher_branch, member_path)
+                    if pstat.status == _STATUS_DELETED:
                         valid = False
                         break
                     # Can't be _STATUS_EXISTS (would already appear in 'seen'),
                     # Can't be _STATUS_NOPERM (stat() always possible if R_OK & X_OK),
                     # Can't be _STATUS_INVALID (stat() always possible if isdir())
-                    assert status == _STATUS_UNKNOWN
+                    assert pstat.status == _STATUS_UNKNOWN
 
                 if valid:
                     members.add(member)

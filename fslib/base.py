@@ -23,6 +23,9 @@ class FileSystem:
 
     # Read
     # ----
+    def listdir(self, path):
+        return self.backend.listdir(path)
+
     def access(self, path, read=True, write=False, follow=True):
         """Whether a file can be accessed."""
         mode = os.F_OK
@@ -283,10 +286,7 @@ class BaseFS:
         raise NotImplementedError()
 
     def listdir(self, path):
-        return [
-            self.convert_path_out(rpath)
-            for rpath in self._listdir(self.convert_path_in(path))
-        ]
+        return self._listdir(self.convert_path_in(path))
 
     def _listdir(self, path):
         raise NotImplementedError()
