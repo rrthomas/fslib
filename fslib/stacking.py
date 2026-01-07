@@ -358,7 +358,7 @@ class UnionFS(base.BaseFS):
 
         Args:
             fs: BaseFS, the actual FS to connect
-            ref: str, a referenc for this branch
+            ref: str, a reference for this branch
             rank: int or None, the rank (depth within the stack)
             writable: bool, whether the branch should be writable.
                 A writable branch MUST NOT be 'readonly' and MUST support
@@ -1087,7 +1087,7 @@ class MountFS(base.BaseFS):
         """Mount an existing BaseFS instance at the given mount_point.
 
         The mount_point must already exist as a directory, and be within this
-        MountFS' root path.
+        MountFS's root path.
         """
         mount_point = helpers.normpath(mount_point)
 
