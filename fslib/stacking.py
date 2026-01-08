@@ -618,6 +618,10 @@ class UnionFS(base.BaseFS):
         _branch, stats = self._get_read_branch(path)
         return stats
 
+    def real_path(self, path):
+        branch, _stats = self._get_read_branch(path)
+        return branch.fs.convert_path_in(path)
+
     # Read/write
     # ----------
 
