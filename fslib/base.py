@@ -411,15 +411,14 @@ class OSFS(BaseFS):
         return '<OSFS: %r (%s)>' % (self.mapped_root, self.path_encoding)
 
     def convert_path_in(self, path):
-        path = super().convert_path_in(path[len(ROOT):])
         assert helpers.is_parent(ROOT, path)
-
-        return os.path.join(self.mapped_root, path)
+        relpath = os.path.relpath(path, ROOT)
+        return os.path.join(self.mapped_root, relpath)
 
     def convert_path_out(self, path):
         assert helpers.is_parent(self.mapped_root, path)
         relpath = os.path.relpath(path, self.mapped_root)
-        return super().convert_path_out(os.path.join(ROOT, relpath))
+        return os.path.join(ROOT, relpath)
 
     # Read
     # ----
